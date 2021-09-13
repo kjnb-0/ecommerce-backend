@@ -9,7 +9,11 @@ router.get("/", async (req, res) => {
   // be sure to include its associated Category and Tag data
   try {
     const productData = await Product.findAll({
-      include: [ Tag, Category ]
+      include: [ 
+        { model: Tag,
+        through: ProductTag },
+        { model: Category }
+      ],
     });
     res.status(200).json(productData);
   } catch (err) {
@@ -23,9 +27,11 @@ router.get("/:id", async (req, res) => {
   // be sure to include its associated Category and Tag data
   try {
     const productData = await Product.findByPk(req.params.id, {
-      include: [{ model: Tag, through: ProductTag, as: "product_tags" },
-      //product belongs to category, so already connected thru index.js
-      Category],
+      include: [ 
+        { model: Tag,
+        through: ProductTag },
+        { model: Category }
+      ],
     });
     if (!productData) {
       res.status(404).json({ message: "No product found with this id" });
@@ -83,6 +89,7 @@ router.put("/:id", (req, res) => {
     })
     .then((productTags) => {
       // get list of current tag_ids
+      console.log(productTags);
       const productTagIds = productTags.map(({ tag_id }) => tag_id);
       // create filtered list of new tag_ids
       const newProductTags = req.body.tagIds
@@ -106,7 +113,7 @@ router.put("/:id", (req, res) => {
     })
     .then((updatedProductTags) => res.json(updatedProductTags))
     .catch((err) => {
-      // console.log(err);
+      console.log(err);
       res.status(400).json(err);
     });
 });
