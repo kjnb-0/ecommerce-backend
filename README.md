@@ -2,8 +2,9 @@
 
 ## Video Walkthrough 
 
-[ecommerce.mp4.zip](https://github.com/kjnb-0/ecommerce-backend/files/7157816/ecommerce.mp4.zip)
+video file: [ecommerce.mp4.zip](https://github.com/kjnb-0/ecommerce-backend/files/7157816/ecommerce.mp4.zip)
 
+view on google drive: https://drive.google.com/file/d/1Xxgeo_zgs2YRJBy4HH9tiqIOjrR6I9BI/view
 
 ## User Story
 
